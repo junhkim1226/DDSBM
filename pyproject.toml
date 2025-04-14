@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "DDSBM"
+version = "1.0.0"
+description = "DDSBM"
+readme = "README.md"
+authors = [
+    { name = "Junhyeong Kim", email = "junhkim1226@kaist.ac.kr" },
+    { name = "Seonghwan Kim", email = "dmdtka00@kaist.ac.kr" },
+    { name = "Seokhyun Moon", email = "mshmjp@kaist.ac.kr" },
+    { name = "Hyeongwoo Kim", email = "novainco98@kaist.ac.kr" },
+    { name = "Jeheon Woo", email = "woojh@kaist.ac.kr" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+]
+requires-python = "==3.9.*"
+[project.urls]
+Website = "http://github.com/junhkim1226/DDSBM"
+
+[tool.ruff]
+exclude = ["data/", "outputs/"]
+
+[tool.basedpyright]
+pythonVersion = "3.9"
+typeCheckingMode = "standard"
+reportImplicitStringConcatenation = false
+reportDeprecated = "warning"
+reportGeneralTypeIssues = false
+reportUnusedVariable = false
+reportUnusedImport = false
+reportUnknownArgumentType = false
+exclude=[
+    "data/",
+    "outputs/",
+    "**/__pycache__",
+    "**/.git",
+    "**/.vscode",
+    "**/.venv",
+    "**/node_modules",
+    "**/build",
+    "**/dist",
+]
+
+[tool.setuptools]
+packages = { find = { where = ["src"], include = ["ddsbm*"] } }
+
+[project.scripts]
+ddsbm-train = "main:train"
+ddsbm-test = "main:test"

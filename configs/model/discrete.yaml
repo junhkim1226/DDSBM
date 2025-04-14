@@ -1,0 +1,29 @@
+# Model settings
+type: "discrete"
+transition: "uniform" # uniform or marginal or bridge
+model: "graph_tf"
+diffusion_steps: 100
+diffusion_noise_schedule: "cosine" # 'cosine', 'sigmoid', 'sym_cosine'
+symmetric_noise_schedule: true # scheduling using symmetric alpha
+min_alpha: 0.999 # Only work for symmetric schedule
+n_layers: 6
+
+extra_features: "all" # 'all', 'cycles', 'eigenvalues' or null
+
+# Do not set hidden_mlp_E, dim_ffE too high, computing large tensors on the edges is costly
+# At the moment (03/08), y contains quite little information
+hidden_mlp_dims: { "X": 256, "E": 128, "y": 128 }
+
+# The dimensions should satisfy dx % n_head == 0
+hidden_dims:
+  {
+    "dx": 256,
+    "de": 64,
+    "dy": 128,
+    "n_head": 8,
+    "dim_ffX": 256,
+    "dim_ffE": 128,
+    "dim_ffy": 256,
+  }
+
+lambda_train: [5, 0]

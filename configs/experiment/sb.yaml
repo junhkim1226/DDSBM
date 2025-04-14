@@ -1,0 +1,8 @@
+outer_loops: 10
+single_direction: false
+initial_direction: backward
+skip_data_generation: false
+skip_initial_graph_matching: false
+current_iteration:
+current_direction:
+skip_graph_matching: false

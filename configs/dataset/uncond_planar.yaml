@@ -1,0 +1,9 @@
+name: uncond_planar # should be set manually
+datadir: data/${dataset.name}
+datadirname: ${general.name}
+original_datadirname: planar
+pin_memory: false
+remove_h: false
+compute_dataset_infos: false
+unconditional: true
+prior_sample: true

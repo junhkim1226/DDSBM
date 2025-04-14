@@ -1,0 +1,33 @@
+# Graph Matching settings
+gpus: ${general.gpus} # number of gpus
+transition: true # Apply Transition Matrix
+full_edge_0: true
+full_edge_T: false
+
+batch_size: 2000 # NOTE: we overwrite train.batch_size or general.sample_batch_size with this value for train and test, respectively
+
+num_seed: 10
+tol: 1e-4 # Spectral Matching threshold
+max_iter: 2500 # Maximum iteration of Spectral Matching
+noise_coeff: 1e-6 # Noise coeffcient
+pooling_type: max
+dtype: float32
+
+data_path: null
+initialize: true
+only_post_process: false
+
+# Debug Option
+self_recover: false # False or "T" or "0"
+post_process: true
+num_data: null
+force_reload: false
+
+# SB
+iteration:
+
+# Test
+test: false
+
+# COMPUTE NLL
+only_compute_nll: false

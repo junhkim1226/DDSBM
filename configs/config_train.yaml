@@ -1,0 +1,14 @@
+defaults:
+  - _self_
+  - experiment: sb
+  - general: general_default
+  - model: discrete
+  - train: train_default
+  - dataset: jointmol
+  - graph_match: graph_match_default
+
+hydra:
+  job:
+    chdir: True
+  run:
+    dir: outputs/${dataset.name}/${now:%Y-%m-%d}_${general.name}
