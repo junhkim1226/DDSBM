@@ -28,7 +28,7 @@ python graph_to_mol.py \
 This will generate resulting molecule smiles in `${PROJECT_DIR}/outputs/${DATASET_NAME}/${EXP_NAME}/test_${direction}_${iteration}_${epoch}/result_${direction}_seed${SEED}.csv`. We also note that the resulting validity, uniqueness, novelty is written in `${PROJECT_DIR}/outputs/${DATASET_NAME}/${EXP_NAME}/test_${direction}_${iteration}_${epoch}/VUN_${direction}_${SEED}.txt`.
 
 > [!IMPORTANT]
-> By default, the analysis results will be generated in `${PROJECT_DIR}/results/{nll,fcd,nspdk,prop_diff,val_props}`. One can change this output directory with `--output_path` option, for all the codes introduced in below. 
+> By default, the analysis results will be generated in `${PROJECT_DIR}/results/{nll,fcd,nspdk,prop_diff,val_props}`. One can change this output directory with `--output_path` option, for all the codes introduced in below.
 
 ## Negative Log Likelihood (NLL) Analysis
 Since we always generate `pandas.DataFrame` for NLL in `src/ddsbm/graph_match_helper.py`, we can gather pre-computed ones and make result from them.
@@ -47,6 +47,11 @@ python analysis/nll.py \
 ```
 
 This will make `${PROJECT_DIR}/results/nll/${DATASET_NAME}-${EXP_NAME}-${DIRECTION}-${SEEDS}.csv`.
+```bash
+../results/
+└── nll
+    └── zinc-2025-04-15_SB_0.999-forward-42.csv
+```
 
 ## Neighborhood Subgraph Pairwise Distance Kernel (NSPDK) Analysis
 `analysis/nspdk.py` compare NSPDK between original and generated data. You can set specific iterations to analyze with `--iterations` flag. For reproducibility, you should fix `PYTHONHASHSEED` each time running the evaluation code.
@@ -64,6 +69,11 @@ PYTHONHASHSEED=0 python analysis/nspdk.py \
 ```
 
 This will make `${PROJECT_DIR}/results/nspdk/${DATASET_NAME}-${EXP_NAME}-${DIRECTION}-${SEEDS}.csv`.
+```bash
+../results/
+└── nspdk
+    └── zinc-2025-04-15_SB_0.999-forward-42.csv
+```
 
 ## Property and Validity Analysis
 For property evaluation, we need to use two codes: `analysis/val_prop_wd.py` and `analysis/prop_diff.py`.
@@ -100,6 +110,13 @@ python analysis/prop_diff.py \
 
 This will make `${PROJECT_DIR}/results/prop_diff/${DATASET_NAME}-${EXP_NAME}-${DIRECTION}-${SEEDS}.csv`.
 
+```bash
+../results/
+└── val_props
+    ├── zinc-2025-04-15_SB_0.999-forward-val-42.csv
+    └── zinc-2025-04-15_SB_0.999-forward-wd-42.csv
+```
+
 ## Fréchet ChemNet Distance (FCD) Analysis
 FCD Analysis do very similar thing compared to [Property and Validity Analysis](#property-and-validity-analysis), thus inputs are the same. You can set specific iterations to analyze with `--iterations` flag.
 
@@ -119,3 +136,9 @@ python analysis/fcd.py \
 ```
 
 This will make `${PROJECT_DIR}/results/fcd/${DATASET_NAME}-${EXP_NAME}-${DIRECTION}-${SEEDS}.csv`.
+
+```bash
+../results/
+└── fcd
+    └── zinc-2025-04-15_SB_0.999-forward-42.csv
+```

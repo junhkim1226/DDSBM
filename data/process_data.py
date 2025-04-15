@@ -19,7 +19,7 @@ def split_data(df: pd.DataFrame, save_dir: Path):
     test_df = df.iloc[int(len(df) * 0.8) :]
 
     for csv_name in ["train", "val", "test"]:
-        save_file = save_dir / f"{csv_name}_zinc.csv"
+        save_file = save_dir / f"{csv_name}.csv"
         save_df: pd.DataFrame
         if csv_name == "train":
             save_df = train_df

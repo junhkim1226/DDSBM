@@ -78,7 +78,6 @@ def run_data_generation(cfg: DictConfig, logger: logging.Logger):
     logger.info("Generate Training Data")
     cfg_data.datadir = str(new_datadir)
     cfg_data.compute_dataset_infos = True
-
     run_subprocess(_cfg, logger, "data_generation")
 
     cfg_data.compute_dataset_infos = False
@@ -177,7 +176,6 @@ def run_subprocess(cfg: DictConfig, logger: logging.Logger, run_type: str):
     logger.info(msg)
 
     cmd = [sys.executable, EXECUTABLES[run_type], config_path]
-    print(f"Debug] {cmd}")
     try:
         result = subprocess.run(
             cmd,
@@ -235,7 +233,6 @@ def train(cfg: DictConfig):
     date = datetime.datetime.now().strftime("%Y-%m-%d")
     if cfg.general.prepend_date_in_name:
         cfg.general.name = f"{date}_{cfg.general.name}"
-        cfg.dataset.datadirname = f"{date}_{cfg.dataset.datadirname}"
 
     # /home/mseok/work/DL/DDSBM/REFACTORING
     if not cfg_exp.skip_data_generation:

@@ -10,7 +10,7 @@ Official implementation of **_Discrete Diffusion Schrödinger Bridge Matching fo
 We propose Discrete Diffusion Schrödinger Bridge Matching for Graph Transformation (DDSBM)
 
 # TODO (for code update)
-- [ ] Add zinc raw data processing & initial pair matching codes
+- [x] Add zinc raw data processing & initial pair matching codes
 - [ ] Checkpoints update using Zenodo (as a `tar` file)
 - [ ] Add polymer dataset, analysis codes
 - [ ] Provide additional execution scripts
@@ -43,6 +43,9 @@ The following section outlines the graph-to-graph transformation process. For de
 ### Data processing
 > [!IMPORTANT]
 > Before running the experiment, you should prepare the original data in `data` directory at the top of this repository.
+
+> [!NOTE]
+> For zinc dataset, we provide unpaired raw data in `./data/raw/zinc250k_ions_removed_properties.csv`. One can get our paired data by following instructions in [./data/README.md](./data/README.md). We also provide paired raw data that we have used for experiments in `./data/raw/ZINC250k_logp_2_4_*_matched_no_nH.csv`.
 
 To process the data, execute the command below:
 ```bash
@@ -104,6 +107,9 @@ src/
 ```
 
 ### Training
+> [!Important]
+> We provide additional scripts for training and sampling in `./scripts`.
+
 After processing and splitting the data, run the following code to start the training process:
 
 ```bash
@@ -120,7 +126,7 @@ ddsbm-train \
     general.name=${EXP_NAME} \
     general.gpus=${NUM_GPUS_TO_USE} \
     model.min_alpha=${MIN_ALPHA} \
-    train.n_epochs=${EPOCHS} \
+    train.n_epochs=${EPOCHS}
 ```
 
 Upon execution, it creates copies of the preprocessed data into a directory named `${EXP_NAME}`.
@@ -183,10 +189,13 @@ ddsbm-train \
     general.gpus=${NUM_GPUS_TO_USE} \
     general.save_every_n_epochs=${SAVE_EVERY} \
     model.min_alpha=${MIN_ALPHA} \
-    train.n_epochs=${EPOCHS} \
+    train.n_epochs=${EPOCHS}
 ```
 
 ### Sampling
+> [!Important]
+> We provide additional scripts for training and sampling in `./scripts`.
+
 After the experiment, you can run the test (sampling) by executing ddsbm-test, which automatically loads the trained model's configuration.
 
 ```bash
